@@ -31,7 +31,7 @@
 # NB: try to import the minimal amount of stuff in this module to lessen
 # the security attack surface
 
-import imp
+import importlib
 import sys
 import bdb # the KEY import here!
 import re
@@ -1467,7 +1467,7 @@ class PGLogger(bdb.Bdb):
         if self.custom_modules:
             for mn in self.custom_modules:
                 # http://code.activestate.com/recipes/82234-importing-a-dynamically-generated-module/
-                new_m = imp.new_module(mn)
+                new_m = types.ModuleType(mn)
                 exec(self.custom_modules[mn], new_m.__dict__) # exec in custom globals
                 user_globals.update(new_m.__dict__)
 
