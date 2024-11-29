@@ -79,7 +79,7 @@ PYTUTOR_INLINE_TYPE_STR = '#pythontutor_hide_type:'
 
 PYTUTOR_SKIP_STR = '#pythontutor_skip:'
 
-CLASS_RE = re.compile('class\s+')
+CLASS_RE = re.compile(r'class\s+')
 
 # copied-pasted from translate() in https://github.com/python/cpython/blob/2.7/Lib/fnmatch.py
 def globToRegex(pat):
@@ -113,10 +113,10 @@ def globToRegex(pat):
                     stuff = '^' + stuff[1:]
                 elif stuff[0] == '^':
                     stuff = '\\' + stuff
-                res = '%s[%s]' % (res, stuff)
+                res = '{}[{}]'.format(res, stuff)
         else:
             res = res + re.escape(c)
-    return res + '\Z(?ms)'
+    return res + r'\Z(?ms)'
 
 def compileGlobMatch(pattern):
     # very important to use match and *not* search!
@@ -231,7 +231,7 @@ def __restricted_import__(*args):
         lines_to_print.append(all_allowed_imports[i:i + ENTRIES_PER_LINE])
     pretty_printed_imports = ',\n  '.join([', '.join(e) for e in lines_to_print])
 
-    raise ImportError('{0} not found or not supported\nOnly these modules can be imported:\n  {1}{2}'.format(args[0], pretty_printed_imports, TRY_ANACONDA_STR))
+    raise ImportError(f'{args[0]} not found or not supported\nOnly these modules can be imported:\n  {pretty_printed_imports}{TRY_ANACONDA_STR}')
 
 
 # Support interactive user input by:
@@ -317,7 +317,7 @@ BANNED_BUILTINS = [] # 2018-06-15 don't ban any builtins since that's just secur
 #                   'dir', 'globals', 'locals', 'vars']
 # Peter says 'apply' isn't dangerous, so don't ban it
 
-IGNORE_VARS = set(('__builtins__', '__name__', '__exception__', '__doc__', '__package__'))
+IGNORE_VARS = {'__builtins__', '__name__', '__exception__', '__doc__', '__package__'}
 
 
 '''
@@ -468,8 +468,7 @@ def visit_function_obj(v, ids_seen_set):
     # recursive cases
     elif typ in (list, tuple, set):
       for child in v:
-        for child_res in visit_function_obj(child, ids_seen_set):
-          yield child_res
+        yield from visit_function_obj(child, ids_seen_set)
 
     elif typ == dict or pg_encoder.is_class(v) or pg_encoder.is_instance(v):
       contents_dict = None
@@ -482,10 +481,8 @@ def visit_function_obj(v, ids_seen_set):
 
       if contents_dict:
         for (key_child, val_child) in contents_dict.items():
-          for key_child_res in visit_function_obj(key_child, ids_seen_set):
-            yield key_child_res
-          for val_child_res in visit_function_obj(val_child, ids_seen_set):
-            yield val_child_res
+          yield from visit_function_obj(key_child, ids_seen_set)
+          yield from visit_function_obj(val_child, ids_seen_set)
 
     # degenerate base case
     yield None
@@ -515,7 +512,7 @@ class PGLogger(bdb.Bdb):
         self.separate_stdout_by_module = separate_stdout_by_module
         self.stdout_by_module = {} # Key: module name, Value: StringIO faux-stdout
 
-        self.modules_to_trace = set(['__main__']) # always trace __main__!
+        self.modules_to_trace = {'__main__'} # always trace __main__!
 
         # Key: module name
         # Value: module's python code as a string
@@ -791,7 +788,7 @@ class PGLogger(bdb.Bdb):
 
         exc_type, exc_value, exc_traceback = exc_info
         frame.f_locals['__exception__'] = exc_type, exc_value
-        if type(exc_type) == type(''):
+        if type(exc_type) == str:
             exc_type_name = exc_type
         else: exc_type_name = exc_type.__name__
 

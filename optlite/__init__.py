@@ -6,7 +6,7 @@ from ._version import __version__
 def exec_script(code, rawInputLst):
     def jsonp(request, dictionary):
         if (request):
-            return "%s(%s)" % (request, dictionary)
+            return "{}({})".format(request, dictionary)
         return dictionary
 
     def json_finalizer(input_code, output_trace):
