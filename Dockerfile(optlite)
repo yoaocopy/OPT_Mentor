@@ -1,0 +1,68 @@
+# Use Ubuntu base image
+FROM ubuntu:22.04
+
+# Avoid timezone prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Hong_Kong
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    wget \
+    software-properties-common \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js v22.11.0
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
+    apt-get update && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install mamba
+RUN curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh" && \
+    bash Mambaforge-$(uname)-$(uname -m).sh -b -p /opt/mamba && \
+    rm Mambaforge-$(uname)-$(uname -m).sh
+
+# Add mamba to PATH
+ENV PATH="/opt/mamba/bin:$PATH"
+
+# Create working directory
+WORKDIR /root
+
+# Clone the repository and checkout py312 branch
+RUN git clone -b py312 https://github.com/dive4dec/OPT_Mentor.git
+
+# Set working directory to the cloned repo
+WORKDIR /root/OPT_Mentor
+
+# Create and activate mamba environment with Python 3.12
+RUN mamba create -n opt_mentor python=3.12 -y
+SHELL ["mamba", "run", "-n", "opt_mentor", "/bin/bash", "-c"]
+
+# Install Python dependencies in the mamba environment
+RUN pip install -r optlite/requirements.txt
+
+# Install Node.js dependencies
+RUN npm install
+
+# Build the project
+RUN python setup.py bdist_wheel -d dist && \
+    npm run build:prod
+
+# Expose default HTTP port
+EXPOSE 8000
+
+# Add a script to handle startup
+RUN echo '#!/bin/bash' > /root/start.sh && \
+    echo 'echo "Starting server..."' >> /root/start.sh && \
+    echo 'cd /root/OPT_Mentor' >> /root/start.sh && \
+    echo 'echo "Current directory: $(pwd)"' >> /root/start.sh && \
+    echo 'echo "Checking build directory:"' >> /root/start.sh && \
+    echo 'ls -la build' >> /root/start.sh && \
+    echo 'python -m http.server --directory build 8000' >> /root/start.sh && \
+    chmod +x /root/start.sh
+
+# Command to run the server inside mamba environment
+ENTRYPOINT ["mamba", "run", "-n", "opt_mentor"]
+CMD ["/root/start.sh"]
