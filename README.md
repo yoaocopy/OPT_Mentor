@@ -1,6 +1,6 @@
 # OPM (Online Python Mentor)
 
-OPM is a serverless implementation of Online Python Tutor Lite (OPTLite) designed for offline use and enhanced educational environments. This project builds upon the [Online Python Tutor Lite](https://github.com/dive4dec/optlite) concept while making it more accessible and secure for educational settings.
+OPM is a serverless implementation of Online Python Tutor Lite (OPTLite) designed for offline use and enhanced educational environments. This project builds upon the [optlite](https://github.com/dive4dec/optlite) concept while making it more accessible and secure for educational settings.
 
 ## Features
 
@@ -15,11 +15,11 @@ OPM is a serverless implementation of Online Python Tutor Lite (OPTLite) designe
 ## Project Structure
 
 ```
-optlite/
-├── optlite-components/    # Core visualization components
-├── opm-0.0.1-py2.py3-none-any.whl    # Python package wheel
-├── pack_optlite.sh       # Script for packaging the application
-└── setup_opm.sh         # Setup script for OPM environment
+OPT_Mentor
+├── optlite-components/                 # Core visualization components
+├── opm-0.0.1-py2.py3-none-any.whl      # Python package wheel (upload to pypi later)
+├── pack_optlite.sh                     # Script for packaging the application
+└── setup_opm.sh                        # Setup script for OPM environment
 ```
 
 ## Setup
@@ -27,7 +27,7 @@ optlite/
 1. Ensure you have Docker installed on your system
 2. Run the setup script:
    ```bash
-   ./optlite/setup_opm.sh
+   ./setup_opm.sh
    ```
 3. The script will:
    - Set up the necessary environment
