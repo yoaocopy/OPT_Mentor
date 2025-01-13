@@ -11,47 +11,49 @@ cp ../opm-0.0.1-py2.py3-none-any.whl .
 
 # Dockerfile
 cat > Dockerfile << 'EOF'
-FROM ubuntu:22.04
+FROM continuumio/miniconda3:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
 
+# Install system dependencies
 RUN apt-get update && \
     apt-get install -y \
-    software-properties-common \
     curl \
-    tzdata \
-    && add-apt-repository ppa:deadsnakes/ppa -y \
-    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get update \
-    && apt-get install -y \
-    python3.12 \
-    python3.12-venv \
-    python3.12-dev \
-    nodejs \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN python3.12 -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
+# Create conda environment
+RUN conda create -n opm-env python=3.12 -y && \
+    conda run -n opm-env conda install -c conda-forge -y \
+    nodejs \
+    jupyterlite-core \
+    jupyterlab_server \
+    jupyterlite-pyodide-kernel \
+    ipywidgets>=7.0.0 \
+    ipython>=7.0.0
 
-RUN pip install --upgrade pip wheel setuptools && \
-    pip install jupyterlite-core jupyterlab_server && \
-    pip install jupyterlite-pyodide-kernel  # Add Pyodide kernel support
+# Add conda environment to PATH
+ENV PATH /opt/conda/envs/opm-env/bin:$PATH
+
+# Activate conda environment
+SHELL ["conda", "run", "-n", "opm-env", "/bin/bash", "-c"]
 
 WORKDIR /opt/jupyterlite
 
 COPY content/ ./content/
 
-RUN jupyter lite init && \
-    jupyter lite build --contents content/notebooks
-
+# Install OPM package first
 COPY opm-0.0.1-py2.py3-none-any.whl .
 RUN pip install opm-0.0.1-py2.py3-none-any.whl
 
+# Then build JupyterLite
+RUN jupyter lite init && \
+    jupyter lite build --contents content/notebooks
+
 EXPOSE 8000
 
-CMD ["jupyter", "lite", "serve"]
+CMD ["conda", "run", "-n", "opm-env", "jupyter", "lite", "serve", "--port", "8000", "--ip", "0.0.0.0"]
 EOF
 
 # config
@@ -90,13 +92,38 @@ cat > content/notebooks/opt_mentor_demo.ipynb << 'EOF'
    "cell_type": "code",
    "execution_count": null,
    "metadata": {},
+   "outputs": [],
    "source": [
-    "# Load the magic command\n",
-    "%load_ext opm\n",
+    "# First make sure IPython is available\n",
+    "import IPython\n",
+    "print(f'IPython version: {IPython.__version__}')\n",
     "\n",
-    "# Use the magic command\n",
-    "%%mentor\n",
-    "print('Hello from opt-mentor!')"
+    "# Then load the magic command\n",
+    "%load_ext opm"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Use the magic command with options\n",
+    "%%opm -w 1100 -h 700\n",
+    "print('Hello from OPT_Mentor!')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Example with run option\n",
+    "%%opm -r\n",
+    "x = 10\n",
+    "y = 20\n",
+    "print(f'Sum is: {x + y}')"
    ]
   }
  ],
@@ -106,7 +133,9 @@ cat > content/notebooks/opt_mentor_demo.ipynb << 'EOF'
    "language": "python",
    "name": "python3"
   }
- }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
 }
 EOF
 
@@ -114,4 +143,4 @@ echo "Building Docker image..."
 docker build -t opt-mentor . --no-cache
 
 echo "Setup complete! You can now run the container with:"
-echo "docker run -p 8888:8000 opt-mentor --name opt-mentor" 
+echo "docker run -p 8888:8000 --name opt-mentor opt-mentor" 
