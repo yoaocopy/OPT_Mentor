@@ -1,4 +1,4 @@
-# OPM (Online Python Mentor)
+# OPM (Offline Python Mentor)
 
 OPM is a serverless implementation of Online Python Tutor Lite (OPTLite) designed for offline use and enhanced educational environments. This project builds upon the [optlite](https://github.com/dive4dec/optlite) concept while making it more accessible and secure for educational settings.
 
