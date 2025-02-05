@@ -33,8 +33,6 @@ RUN conda create -n opm-env python=3.12 -y && \
     ipywidgets>=7.0.0 \
     ipython>=7.0.0
 
-RUN conda install -c dive divewidgets
-
 # Add conda environment to PATH
 ENV PATH /opt/conda/envs/opm-env/bin:$PATH
 
