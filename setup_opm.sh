@@ -33,6 +33,8 @@ RUN conda create -n opm-env python=3.12 -y && \
     ipywidgets>=7.0.0 \
     ipython>=7.0.0
 
+RUN conda install -c dive divewidgets
+
 # Add conda environment to PATH
 ENV PATH /opt/conda/envs/opm-env/bin:$PATH
 
@@ -99,7 +101,7 @@ cat > content/notebooks/opt_mentor_demo.ipynb << 'EOF'
     "print(f'IPython version: {IPython.__version__}')\n",
     "\n",
     "# Then load the magic command\n",
-    "%load_ext opm"
+    "%load_ext divewidgets"
    ]
   },
   {
@@ -124,6 +126,28 @@ cat > content/notebooks/opt_mentor_demo.ipynb << 'EOF'
     "x = 10\n",
     "y = 20\n",
     "print(f'Sum is: {x + y}')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Current Python File Path",
+    "import sys",
+    "print(sys.executable)"
+   ]
+  },
+   {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# divewidgets extension file path",
+    "import sys",
+    "!{sys.executable} -m pip show divewidgets"
    ]
   }
  ],
