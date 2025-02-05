@@ -132,8 +132,8 @@ cat > content/notebooks/opt_mentor_demo.ipynb << 'EOF'
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Current Python File Path",
-    "import sys",
+    "# Current Python File Path\n",
+    "import sys\n",
     "print(sys.executable)"
    ]
   },
@@ -143,8 +143,8 @@ cat > content/notebooks/opt_mentor_demo.ipynb << 'EOF'
    "metadata": {},
    "outputs": [],
    "source": [
-    "# divewidgets extension file path",
-    "import sys",
+    "# divewidgets extension file path\n",
+    "import sys\n",
     "!{sys.executable} -m pip show divewidgets"
    ]
   }
