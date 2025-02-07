@@ -58,6 +58,27 @@
             <input type="text" id="raw_input_textbox" size="30"/>
             <button id="raw_input_submit_btn">Submit</button>
           </div>
+          <div id="aichatbox">
+            <p>Step 1: Initialize WebLLM and Download Model</p>
+            <div class="download-container">
+              <select id="model-selection"></select>
+              <button id="download">Download</button>
+            </div>
+            <p id="download-status" class="hidden"></p>
+        
+            <p>Step 2: Chat</p>
+            <div class="chat-container">
+              <div id="chat-box" class="chat-box"></div>
+              <div id="chat-stats" class="chat-stats hidden"></div>
+              <div class="chat-input-container">
+                <input type="text" id="user-input" placeholder="Type a message..." />
+                <button id="send" disabled>Send</button>
+              </div>
+            </div>
+        
+            <script src="../optlite_connect_llm.js" type="module"></script>
+
+          </div>
           <div id="frontendErrorOutput"></div>
         </div>
       </td>
