@@ -8,6 +8,7 @@ mkdir -p opt-mentor
 cd opt-mentor
 
 cp ../opm-0.0.1-py2.py3-none-any.whl .
+cp ../optmwidgets-0.1.5-py2.py3-none-any.whl .
 
 # Dockerfile
 cat > Dockerfile << 'EOF'
@@ -46,6 +47,8 @@ COPY content/ ./content/
 # Install OPM package first
 COPY opm-0.0.1-py2.py3-none-any.whl .
 RUN pip install opm-0.0.1-py2.py3-none-any.whl
+COPY optmwidgets-0.1.5-py2.py3-none-any.whl .
+RUN pip install optmwidgets-0.1.5-py2.py3-none-any.whl
 
 # Then build JupyterLite
 RUN jupyter lite init && \
