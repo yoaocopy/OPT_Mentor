@@ -44,6 +44,7 @@ The project consists of several key components:
 - **OPT Lite**: The core visualization engine
 - **JupyterLite Integration**: For notebook-based interactions
 - **Pyodide Runtime**: For in-browser Python execution
+- **optmwidgets**: A widget built on top of [divewidgets](https://github.com/dive4dec/divewidgets) that provide programming ai assistant using webllm and langchain.[optmwidgets](https://github.com/chiwangso2/optmwidgets)
 
 ## Requirements
 - Docker
