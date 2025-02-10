@@ -82,6 +82,7 @@ setup(
         "jupyterlite-core",
         "jupyterlab_server",
         "jupyterlite-pyodide-kernel",
+        "optmwidgets"
     ],
     include_package_data=True,
     python_requires=">=3.7",
