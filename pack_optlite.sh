@@ -101,6 +101,6 @@ python -m build --wheel
 echo "Wheel file created in dist/ directory"
 echo "To install: pip install dist/mentor-0.0.1-py3-none-any.whl"
 echo "To use in Jupyter:"
-echo "  %load_ext mentor"
-echo "  %%mentor"
+echo "  %load_ext optm"
+echo "  %%optm"
 echo "  your_code_here" 
