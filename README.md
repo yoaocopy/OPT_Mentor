@@ -28,6 +28,7 @@ OPM is a serverless implementation of Online Python Tutor Lite (OPTLite) designe
 OPM_Mentor
 ├── optlite-components/                 # Core visualization components
 ├── opm-0.0.1-py2.py3-none-any.whl      # Python package wheel
+├── optmwidgets-0.1.5-py2.py3-none-any.whl      # Python package wheel of optmwidgets
 ├── pack_optlite.sh                     # Script for packaging the application
 └── setup_opm.sh                        # Setup script for OPM environment
 ```
