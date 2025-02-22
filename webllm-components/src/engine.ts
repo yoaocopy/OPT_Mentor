@@ -248,11 +248,10 @@ export class MLCEngine implements MLCEngineInterface {
       typeof document !== "undefined"
         ? document.URL
         : globalThis.location.origin;
-    let modelUrl = modelRecord.model;
-    //let modelUrl = cleanModelUrl(modelRecord.model);
-    // if (!modelUrl.startsWith("http")) {
-    //   modelUrl = new URL(modelUrl, baseUrl).href;
-    // }
+    let modelUrl = cleanModelUrl(modelRecord.model);
+    if (!modelUrl.startsWith("http")) {
+      modelUrl = new URL(modelUrl, baseUrl).href;
+    }
     const modelType =
       modelRecord.model_type === undefined || modelRecord.model_type === null
         ? ModelType.LLM
@@ -267,62 +266,18 @@ export class MLCEngine implements MLCEngineInterface {
       configCache = new tvmjs.ArtifactCache("webllm/config");
     }
 
-    //load model config
+    // load config
     const configUrl = new URL("mlc-chat-config.json", modelUrl).href;
-    let curModelConfig: ChatConfig;
-    
-    try {
-      // try retrieve from local file
-      const localConfigPath = "../dist/models/Llama-3.2-1B-Instruct-q4f32_1-MLC/mlc-chat-config.json";
-      const localConfig = await fetch(localConfigPath);
-      if(localConfig.ok) {
-        curModelConfig = {
-          ...(await localConfig.json()),
-          ...modelRecord.overrides,
-          ...chatOpts,
-        } as ChatConfig;
-        log.info("Using local config file");
-      } else {
-        //if not exist, retrieve from remote
-        curModelConfig = {
-          ...(await configCache.fetchWithCache(
-            configUrl,
-            "json", 
-            this.reloadController?.signal,
-          )),
-          ...modelRecord.overrides,
-          ...chatOpts,
-        } as ChatConfig;
-        log.info("Using remote config file");
-      }
-    } catch (error) {
-      // if error, retrieve from remote
-      curModelConfig = {
-        ...(await configCache.fetchWithCache(
-          configUrl,
-          "json",
-          this.reloadController?.signal, 
-        )),
-        ...modelRecord.overrides,
-        ...chatOpts,
-      } as ChatConfig;
-      log.info("Using remote config file");
-    }
-    
+    const curModelConfig = {
+      ...(await configCache.fetchWithCache(
+        configUrl,
+        "json",
+        this.reloadController?.signal,
+      )),
+      ...modelRecord.overrides,
+      ...chatOpts,
+    } as ChatConfig;
     this.loadedModelIdToChatConfig.set(modelId, curModelConfig);
-
-    // // load config
-    // const configUrl = new URL("mlc-chat-config.json", modelUrl).href;
-    // const curModelConfig = {
-    //   ...(await configCache.fetchWithCache(
-    //     configUrl,
-    //     "json",
-    //     this.reloadController?.signal,
-    //   )),
-    //   ...modelRecord.overrides,
-    //   ...chatOpts,
-    // } as ChatConfig;
-    // this.loadedModelIdToChatConfig.set(modelId, curModelConfig);
 
     // load tvm wasm
     let wasmCache: tvmjs.ArtifactCacheTemplate;

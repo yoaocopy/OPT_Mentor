@@ -309,9 +309,9 @@ export const functionCallingModelIds = [
 export const prebuiltAppConfig: AppConfig = {
   useIndexedDBCache: false,
   model_list: [{
-    model: "../dist/models/Llama-3.2-1B-Instruct-q4f32_1-MLC",
-    model_id: "Llama-3.2-1B-Instruct-q4f32_1-MLC",
-    model_lib: "../dist/libs/Llama-3.2-1B-Instruct-q4f32_1-ctx4k_cs1k-webgpu.wasm",
+    model: "http://127.0.0.1:5050/models",
+    model_id: "Llama-3.2-3B-Instruct-q4f16_1-MLC",
+    model_lib: "http://127.0.0.1:5050/libs/Llama-3.2-3B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
     vram_required_MB: 1128.82,
     low_resource_required: true,
     overrides: {
@@ -319,3 +319,19 @@ export const prebuiltAppConfig: AppConfig = {
     },
   }]
 };
+
+/** example
+ * {
+      model: "https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q4f16_1-MLC",
+      model_id: "Llama-3.2-1B-Instruct-q4f16_1-MLC",
+      model_lib:
+        modelLibURLPrefix +
+        modelVersion +
+        "/Llama-3.2-1B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+      vram_required_MB: 879.04,
+      low_resource_required: true,
+      overrides: {
+        context_window_size: 4096,
+      },
+    },
+ */
