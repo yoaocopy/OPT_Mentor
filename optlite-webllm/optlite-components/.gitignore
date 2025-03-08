@@ -126,6 +126,7 @@ downloads/
 eggs/
 .eggs/
 lib/
+!js/lib/
 lib64/
 parts/
 sdist/
