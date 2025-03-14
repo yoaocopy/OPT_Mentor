@@ -112,16 +112,11 @@ function onMessageSend(input) {
 document.getElementById("askAI").addEventListener("click", function () {
     //const frontend = new OptFrontend();
 
-    // var question = "My code is: " + decodeURIComponent(frontend.getCode()) + " Error: " + document.getElementById("frontendErrorOutput").textContent +
-    // "Give me a short answer to fix it.";
-    document.getElementById("chat-stats").classList.add("hidden");
+    var question = "I'm writing Python, and here's my code: "+extractText()+" and I received this error: " + document.getElementById("frontendErrorOutput").textContent?.replace("(UNSUPPORTED FEATURES)", "") +
+    "Can you please provide a brief explanation of the cause of this error? I only need the reason., No code solution needed.";
 
-    var question = "I got this error on python code:\n[" + document.getElementById("frontendErrorOutput").textContent?.replace("(UNSUPPORTED FEATURES)", "")
-    + "]\nGive me a short answer to fix it.";
-    onMessageSend( question);
-        
-    //console.log(question);
-    //console.log(frontend.getCode());
+    document.getElementById("chat-stats").classList.add("hidden");
+    onMessageSend(question);
 });
 
 /*************** UI binding ***************/
@@ -134,7 +129,7 @@ availableModels.forEach((modelId) => {
 (document.getElementById("model-selection") as HTMLSelectElement).value = selectedModel;
 document.getElementById("download").addEventListener("click", function () {
     initializeWebLLMEngine().then(() => {
-        //document.getElementById("send").disabled = false;
+        (document.getElementById("askAI") as HTMLButtonElement).disabled = false;
     });
 });
 
@@ -143,6 +138,16 @@ $("#send").click(() => {
     onMessageSend(inputElement.value);
 });
 
+function extractText() {
+    const container = document.querySelector('.ace_layer.ace_text-layer');
+    const lines = container.querySelectorAll('.ace_line');
+    let extractedText = '';
+    lines.forEach(line => {
+        extractedText += line.textContent + '\n';
+    });
+
+    return extractedText;
+}
 
 // the ask AI button hide and display
 function initializeErrorObserver() {
