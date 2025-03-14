@@ -31,7 +31,7 @@
 # NB: try to import the minimal amount of stuff in this module to lessen
 # the security attack surface
 
-import imp
+import importlib
 import sys
 import bdb # the KEY import here!
 import re
