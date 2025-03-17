@@ -51,9 +51,24 @@ export class OptTestcases {
       _me.addTestcase(null);
       return false; // to prevent link from being followed
     });
-
-    $("#runAllTestsButton").click(function() {
-      $(".runTestCase").click();
+    $("#runAllTestsButton").click(async () => {
+      const testCases = $("#testCasesTable tbody tr");
+      $("#runAllTestsButton").attr('disabled', true);
+      
+      for (let i = 0; i < testCases.length; i++) {
+      const testNumber = $(testCases[i]).attr('id').split('_')[1];
+      await new Promise<void>((resolve) => {
+        const checkComplete = setInterval(() => {
+        if (!$("#runTestCase_" + testNumber).prop('disabled')) {
+          clearInterval(checkComplete);
+          resolve();
+        }
+        }, 100);
+        $("#runTestCase_" + testNumber).click();
+      });
+      }
+      
+      $("#runAllTestsButton").attr('disabled', false);
     });
   }
 
