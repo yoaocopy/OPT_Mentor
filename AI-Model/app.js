@@ -12,7 +12,7 @@ const port = 5050;
 // }));
 
 app.use(cors({
-    origin: ['https://deep.cs.cityu.edu.hk/:8000','http://127.0.0.1:8000','http://localhost:8000'],
+    origin: ['https://deep.cs.cityu.edu.hk/:8000','https://deep.cs.cityu.edu.hk','http://127.0.0.1:8000','http://localhost:8000'],
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
