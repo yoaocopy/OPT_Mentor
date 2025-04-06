@@ -1,0 +1,17 @@
+version: '1.0'
+
+services:
+  webllm:
+    build:
+      context: ./optlite-webllm
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+
+  ai-model:
+    build:
+      context: ./AI-Model
+      dockerfile: Dockerfile
+    ports:
+      - "5050:5050"
+
