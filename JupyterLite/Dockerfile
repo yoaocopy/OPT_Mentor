@@ -21,6 +21,8 @@ SHELL ["conda", "run", "-n", "jupyterlite-env", "/bin/bash", "-c"]
 
 WORKDIR /opt/jupyterlite
 
+RUN pip install optmentorwidgets
+
 RUN jupyter lite init && \
     jupyter lite build --base-url=/optmentor/jupyterlite/
 
