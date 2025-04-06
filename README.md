@@ -14,7 +14,7 @@ OPM is a serverless implementation of Online Python Tutor Lite (OPTLite) designe
 ## Installation (for local host)
 1. Ensure you have Docker installed on your system
 2. Run the command in cmd or terminal
-   ```docker-compose up -d --build
+   ```docker-compose up -d --build```
 3. The script will:
    - Build the Docker image of optlite-webllm and AI-model
    - RUN the docker container
