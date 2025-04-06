@@ -1,7 +1,6 @@
 # OPM (Offline Python Mentor)
 
-OPM is a serverless implementation of Online Python Tutor Lite (OPTLite) designed for offline use and enhanced educational environments. This project builds upon the [optlite](https://github.com/dive4dec/optlite) concept while making it more accessible and secure for educational settings.
-
+OPM is a serverless implementation of Online Python Tutor Lite (OPTLite) designed for offline use and enhanced educational environments. This project builds upon the [optlite](https://github.com/dive4dec/optlite) concept while making it more accessible and secure for educational settings. Integrated with [WEBLLM](https://github.com/mlc-ai/web-llm) for advanced language model capabilities.
 ## Features
 
 - **Serverless Operation**: Runs entirely in the browser using [Pyodide](https://pyodide.org)
@@ -12,38 +11,42 @@ OPM is a serverless implementation of Online Python Tutor Lite (OPTLite) designe
 - **Interactive Visualization**: Visual representation of Python program execution
 - **Live Editing Mode**: Real-time code editing and visualization
 
-## Installation
+## Installation (for local host)
 1. Ensure you have Docker installed on your system
-2. Run the setup script:
-   ```bash
-   ./setup_opm.sh
-   ```
+2. Run the command in cmd or terminal
+   ```docker-compose up -d --build
 3. The script will:
-   - Build the Docker image
-   - Configure the JupyterLite environment
+   - Build the Docker image of optlite-webllm and AI-model
+   - RUN the docker container
+
 
 ## Project Structure
 
 ```
 OPM_Mentor
-├── optlite-components/                 # Core visualization components
-├── opm-0.0.1-py2.py3-none-any.whl      # Python package wheel
-├── optmwidgets-0.1.5-py2.py3-none-any.whl      # Python package wheel of optmwidgets
-├── pack_optlite.sh                     # Script for packaging the application
-└── setup_opm.sh                        # Setup script for OPM environment
+├── AI-Model                 # AI model component
+├── JupyterLite              # The JupyterLite component
+└── optlite-webllm           # the integraded optlite and webllm
 ```
 
 ## Usage
 Run the container with:
 ```bash
-docker run -p 8888:8000 opt-mentor --name opt-mentor
+docker-compose up -d --build
 ```
-Access at http://localhost:8888
+
+Access at http://localhost:8000
+
+for stop the service
+```bash
+docker-compose down
+```
 
 ## Development
 The project consists of several key components:
 - **OPT Lite**: The core visualization engine
 - **JupyterLite Integration**: For notebook-based interactions
+- **WebLLM Integration**: For serverless AI assistant
 - **Pyodide Runtime**: For in-browser Python execution
 - **[optmwidgets](https://github.com/chiwangso2/optmwidgets)**: A widget built on top of [divewidgets](https://github.com/dive4dec/divewidgets) that provide programming ai assistant using webllm and langchain.
 
