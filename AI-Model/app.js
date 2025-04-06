@@ -33,5 +33,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server running at http://https://deep.cs.cityu.edu.hk:${port}`);
+    console.log(`Server is running | port:${port}`);
 });
