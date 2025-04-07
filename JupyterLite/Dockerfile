@@ -24,8 +24,8 @@ WORKDIR /opt/jupyterlite
 RUN pip install optmentorwidgets
 
 RUN jupyter lite init && \
-    jupyter lite build --base-url=/optmentor/jupyterlite/
+    jupyter lite build
 
 EXPOSE 8888
 
-CMD ["/bin/bash", "-c", "source /opt/conda/etc/profile.d/conda.sh && conda activate jupyterlite-env && jupyter lite serve --port 8888 --ip 0.0.0.0"]
+CMD ["/bin/bash", "-c", "source /opt/conda/etc/profile.d/conda.sh && conda activate jupyterlite-env && jupyter lite serve --port 8888"]
