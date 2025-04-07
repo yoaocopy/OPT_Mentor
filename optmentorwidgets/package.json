@@ -1,6 +1,6 @@
 {
   "name": "jupyter-optmentorwidgets",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Jupyter Widgets for OPT Mentor virtual learning environment.",
   "keywords": [
     "jupyter",

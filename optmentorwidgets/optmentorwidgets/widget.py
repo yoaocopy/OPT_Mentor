@@ -59,8 +59,12 @@ class OPTWidget(DOMWidget, ValueWidget):
     height = Int(700).tag(sync=True);
     width = Int(1100).tag(sync=True);
 
-def create_optmentor(script="""print('Hello, World!')""", live=False, width=1100, height=700):
+def create_optmentor(script="""print('Hello, World!')""", live=False, width=1100, height=700, offline=False):
     #https://deep.cs.cityu.edu.hk/optmentor/opt-mentor/#mode=display
+    if offline:
+        if live: srcprefix = "http://localhost:8000/live.html#code="
+        else: srcprefix = "http://localhost:8000/#mode=display&code="
+        return OPTWidget(script=script, srcprefix=srcprefix, width=width, height=height)
     if live:
         #srcprefix = "https://dive4dec.github.io/optlite/live.html#code="
         srcprefix = "https://deep.cs.cityu.edu.hk/optmentor/opt-mentor/live.html#code="

@@ -69,6 +69,10 @@ class OPTMagics(Magics):
         '-h', '--height', type=int, default=700,
         help="The height of the output frame (default: 700)."
     )
+    @argument(
+        '-o', '--offline', action='store_true',
+        help="offline mode."
+    )
     @cell_magic
     def optmentor(self, line, cell):
         """Visualize the cell block of Python code with the serverless OPTLite.
@@ -76,4 +80,4 @@ class OPTMagics(Magics):
         opts = parse_argstring(self.optmentor, line)
         if opts.run:
             result = self.shell.run_cell(cell)
-        return create_optmentor(script=cell, live=opts.live, width=opts.width, height=opts.height)
+        return create_optmentor(script=cell, live=opts.live, width=opts.width, height=opts.height, offline=opts.offline)

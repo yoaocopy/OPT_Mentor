@@ -1,6 +1,6 @@
 {% set data = load_setup_py_data() %}
 {% set name = "optmentorwidgets" %}
-{% set version = "0.2.7" %}
+{% set version = "0.2.8" %}
 
 package:
   name: "{{ name|lower }}"

@@ -1,5 +1,5 @@
 
-# OPT Mentor Widgets
+# DIVE Widgets
 
 Jupyter Widgets for DIVE virtual learning environment. The project aims to integrate interactive learning tools into jupyter notebook. E.g.,
 
@@ -14,23 +14,34 @@ Example notebooks can be found under the [examples](./examples) folder.
 You can install using `pip`:
 
 ```bash
-pip install optmentorwidgets
+pip install divewidgets
 ```
 
+or `conda`:
+
+```bash
+conda install -c dive divewidgets
+```
+
+or `mamba`:
+
+```bash
+mamba install -c dive divewidgets
+```
 
 
 If you are using Jupyter Notebook 5.2 or earlier, you may also need to enable
 the nbextension:
 ```bash
-jupyter nbextension enable --py [--sys-prefix|--user|--system] optmentorwidgets
+jupyter nbextension enable --py [--sys-prefix|--user|--system] divewidgets
 ```
 
 ## Development Installation
 
 Create a dev environment:
 ```bash
-conda create -n optmentorwidgets-dev -c conda-forge nodejs python jupyterlab
-conda activate optmentorwidgets-dev
+conda create -n divewidgets-dev -c conda-forge nodejs python jupyterlab
+conda activate divewidgets-dev
 ```
 
 Install the python. This will also build the TS package.
