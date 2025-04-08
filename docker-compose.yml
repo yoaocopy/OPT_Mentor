@@ -1,7 +1,7 @@
 version: '1.0'
 
 services:
-  webllm:
+  optlite-webllm:
     build:
       context: ./optlite-webllm
       dockerfile: Dockerfile
@@ -14,4 +14,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5050:5050"
+
+  jupyterlite:
+    build:
+      context: ./JupyterLite
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
 
