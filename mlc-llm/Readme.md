@@ -1,6 +1,8 @@
 
 ## LLM conversion to wasm format
 
+This Dockerfile creates a Docker image based on Ubuntu 24.04, setting up an environment for building, converting and running wasm models, with a focus on web-based inference using WebAssembly. It installs tools, libraries, and dependencies to support the development and deployment of large language models (LLMs) in a web environment.
+
 ### Hardware Requirements
 - **CPU**: 4+ cores (8+ recommended for better performance).
 - **RAM**: 8 GB minimum (16 GB+ recommended for machine learning tasks).
