@@ -75,7 +75,7 @@ jobs:
       
     - name: Copy WebLLM components to build directory
       run: |
-        # Copy WebLLM components to the build directory
+        mkdir -p optlite-webllm/optlite-components/build/webllm
         cp -r optlite-webllm/webllm-components/lib/* optlite-webllm/optlite-components/build/webllm/
         
     - name: Upload artifact
