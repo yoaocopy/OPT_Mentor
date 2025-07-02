@@ -83,6 +83,22 @@
               </div>
               <p id="download-status" class="hidden"></p>
 
+              <!-- 新增：自定义模型URL -->
+              <div class="download-container">
+                <input type="text" id="custom-model-base-url" placeholder="模型Base URL，如 https://huggingface.co/xxx/xxx 或自托管地址" style="width: 60%;">
+                <input type="text" id="custom-model-wasm-url" placeholder="WASM文件URL，如 https://xxx/model.wasm" style="width: 60%; margin-top: 4px;">
+                <input type="text" id="custom-model-id" placeholder="模型名称(可选)" style="width: 30%; margin-top: 4px;">
+                <button id="add-custom-model">添加自定义模型</button>
+                <div id="custom-model-error" style="color: red;"></div>
+              </div>
+
+              <!-- 新增：本地模型加载 -->
+              <div class="download-container">
+                <input type="file" id="local-model-files" multiple>
+                <button id="load-local-model">加载本地模型</button>
+                <div id="local-model-status"></div>
+              </div>
+
           
       
               

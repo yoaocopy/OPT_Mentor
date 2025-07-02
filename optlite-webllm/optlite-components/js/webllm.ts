@@ -31,11 +31,25 @@ async function initializeWebLLMEngine() {
     document.getElementById("download-status").classList.remove("hidden");
     var modelSelect = document.getElementById("model-selection") as HTMLInputElement;
     selectedModel = modelSelect.value;
-    const config = {
+
+    // 检查是否为自定义模型
+    let customModels = (window as any).customModels || {};
+    let config = {
         temperature: 1.0,
         top_p: 1,
     };
-    await engine.reload(selectedModel, config);
+    if (customModels[selectedModel]) {
+        // 动态注入到 engine.appConfig
+        let appConfig = engine["appConfig"] || webllm.prebuiltAppConfig;
+        // 避免重复添加
+        if (!appConfig.model_list.find((m) => m.model_id === selectedModel)) {
+            appConfig.model_list.push(customModels[selectedModel]);
+        }
+        engine.setAppConfig(appConfig);
+        await engine.reload(selectedModel, config);
+    } else {
+        await engine.reload(selectedModel, config);
+    }
 }
 
 async function streamingGenerating(messages, onUpdate, onFinish, onError) {
@@ -192,4 +206,42 @@ function initializeErrorObserver() {
 }
 
 document.addEventListener('DOMContentLoaded', initializeErrorObserver);
+
+// === 自定义模型逻辑 ===
+document.getElementById("add-custom-model").addEventListener("click", function () {
+    const baseUrl = (document.getElementById("custom-model-base-url") as HTMLInputElement).value.trim();
+    const wasmUrl = (document.getElementById("custom-model-wasm-url") as HTMLInputElement).value.trim();
+    const customId = (document.getElementById("custom-model-id") as HTMLInputElement).value.trim() || ("Custom-" + Date.now());
+    const errorDiv = document.getElementById("custom-model-error");
+
+    errorDiv.textContent = "";
+
+    if (!baseUrl || !wasmUrl) {
+        errorDiv.textContent = "请填写模型Base URL和WASM文件URL";
+        return;
+    }
+
+    // 组装 ModelRecord
+    const customModelRecord = {
+        model: baseUrl,
+        model_id: customId,
+        model_lib: wasmUrl,
+        overrides: {
+            context_window_size: 2048
+        }
+    };
+
+    // 动态添加到下拉框
+    const option = document.createElement("option");
+    option.value = customId;
+    option.textContent = customId + " (自定义)";
+    document.getElementById("model-selection").appendChild(option);
+
+    // 记录到全局
+    (window as any).customModels = (window as any).customModels || {};
+    (window as any).customModels[customId] = customModelRecord;
+
+    // 自动选中
+    (document.getElementById("model-selection") as HTMLSelectElement).value = customId;
+});
 
