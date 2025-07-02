@@ -298,6 +298,10 @@ export const functionCallingModelIds = [
   "Hermes-2-Pro-Mistral-7B-q4f16_1-MLC",
   "Hermes-3-Llama-3.1-8B-q4f32_1-MLC",
   "Hermes-3-Llama-3.1-8B-q4f16_1-MLC",
+  "TinyLlama-1.1B (Deep Server)",
+  "TinyLlama-1.1B (f32) (Deep Server)",
+  "TinyLlama-1.1B (Localhost)",
+  "TinyLlama-1.1B (f32) (Localhost)",
 ];
 
 /**
@@ -372,8 +376,27 @@ export const prebuiltAppConfig: AppConfig = {
       }
     },
 
-
-
+    // Add TinyLlama models for deep server
+    {
+      model: "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC",
+      model_id: "TinyLlama-1.1B (Deep Server)",
+      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/TinyLlama-1.1B-Chat-v1.0-q4f16_1-ctx2k_cs1k-webgpu.wasm",
+      vram_required_MB: 675.24,
+      low_resource_required: true,
+      overrides: {
+        context_window_size: 2048,
+      }
+    },
+    {
+      model: "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v1.0-q4f32_1-MLC",
+      model_id: "TinyLlama-1.1B (f32) (Deep Server)",
+      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/TinyLlama-1.1B-Chat-v1.0-q4f32_1-ctx2k_cs1k-webgpu.wasm",
+      vram_required_MB: 795.98,
+      low_resource_required: true,
+      overrides: {
+        context_window_size: 2048,
+      }
+    },
 
     //localhost models
     {
@@ -438,6 +461,50 @@ export const prebuiltAppConfig: AppConfig = {
         context_window_size: 4096,
       }
     },
+
+    // Add TinyLlama models
+    {
+      model: "http://localhost:5050/models/TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC",
+      model_id: "TinyLlama-1.1B (Localhost)",
+      model_lib: "http://localhost:5050/libs/TinyLlama-1.1B-Chat-v1.0-q4f16_1-ctx2k_cs1k-webgpu.wasm",
+      vram_required_MB: 675.24,
+      low_resource_required: true,
+      overrides: {
+        context_window_size: 2048,
+      }
+    },
+    {
+      model: "http://localhost:5050/models/TinyLlama-1.1B-Chat-v1.0-q4f32_1-MLC",
+      model_id: "TinyLlama-1.1B (f32) (Localhost)",
+      model_lib: "http://localhost:5050/libs/TinyLlama-1.1B-Chat-v1.0-q4f32_1-ctx2k_cs1k-webgpu.wasm",
+      vram_required_MB: 795.98,
+      low_resource_required: true,
+      overrides: {
+        context_window_size: 2048,
+      }
+    },
+
+    // Example: Add your new model here
+    // {
+    //   model: "http://localhost:5050/models/Your-New-Model-q4f16_1-MLC",
+    //   model_id: "Your-New-Model (Localhost)",
+    //   model_lib: "http://localhost:5050/libs/Your-New-Model-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+    //   vram_required_MB: 1500.0, // Calculate this based on your model size
+    //   low_resource_required: true, // Set based on your model requirements
+    //   overrides: {
+    //     context_window_size: 4096,
+    //   }
+    // },
+    // {
+    //   model: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/models/Your-New-Model-q4f16_1-MLC",
+    //   model_id: "Your-New-Model (Deep Server)",
+    //   model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Your-New-Model-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+    //   vram_required_MB: 1500.0, // Calculate this based on your model size
+    //   low_resource_required: true, // Set based on your model requirements
+    //   overrides: {
+    //     context_window_size: 4096,
+    //   }
+    // },
 
     
   
