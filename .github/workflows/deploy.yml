@@ -57,6 +57,12 @@ jobs:
         export PATH="$PATH:$(npm bin)"
         npm run build || true
         
+    - name: Build Python wheel
+      run: |
+        cd optlite-webllm/optlite-components
+        pip install wheel
+        python3 setup.py bdist_wheel -d dist
+
     - name: Build OPTLite Components
       run: |
         cd optlite-webllm/optlite-components
