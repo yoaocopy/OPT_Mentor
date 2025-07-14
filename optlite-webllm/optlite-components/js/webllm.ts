@@ -132,12 +132,6 @@ document.getElementById("askAI").addEventListener("click", function () {
     var question = "I'm writing Python, and here's my code: "+extractText()+" and I received this error: " + document.getElementById("frontendErrorOutput").textContent?.replace("(UNSUPPORTED FEATURES)", "") +
     "Hint in Socratic style";
 
-    // Note: If you're seeing this message, please ensure you have a stable network connection to huggingface.co
-    // The AI model needs to download files from Hugging Face to function properly
-    // Common issues:
-    // 1. Slow or unstable internet connection
-    // 2. Hugging Face website being blocked by firewall
-    // 3. DNS resolution problems
 
     document.getElementById("chat-stats").classList.add("hidden");
     onMessageSend(question);
@@ -254,4 +248,21 @@ document.getElementById("add-custom-model").addEventListener("click", function (
     // 自动选中
     (document.getElementById("model-selection") as HTMLSelectElement).value = customId;
 });
+
+// === 显示最后修改时间 ===
+function showLastModified() {
+    // 你可以用构建时注入的时间戳，或者用 Date.now() 作为演示
+    // 推荐用构建时注入的字符串，下面用 Date.now() 作为例子
+    const lastModified = "Last modified: " + new Date(/*BUILD_TIMESTAMP*/ Date.now()).toLocaleString();
+    let modDiv = document.getElementById("last-modified-block");
+    if (!modDiv) {
+        modDiv = document.createElement("div");
+        modDiv.id = "last-modified-block";
+        modDiv.style.cssText = "position:fixed;bottom:0;left:0;width:100%;background:#eee;color:#333;padding:4px 0;text-align:center;font-size:12px;z-index:9999;";
+        document.body.appendChild(modDiv);
+    }
+    modDiv.textContent = lastModified;
+}
+
+document.addEventListener('DOMContentLoaded', showLastModified);
 
