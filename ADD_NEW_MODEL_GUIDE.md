@@ -49,6 +49,9 @@ Add a new route for your model:
 ```javascript
 // Add your new model route
 app.use('/models/Your-New-Model-q4f16_1-MLC/resolve/main/', express.static('./models/Your-New-Model-q4f16_1-MLC/'));
+
+// Example: Adding Qwen2.5-1.5B-Instruct model
+app.use('/models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC/resolve/main/', express.static('./models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC/'));
 ```
 
 ### 2.2 Update `AI-Model/Dockerfile`
@@ -77,6 +80,18 @@ Add your model to the `model_list` array:
   low_resource_required: true, // Set based on requirements
   overrides: {
     context_window_size: 4096,
+  }
+},
+
+// Example: Qwen2.5-1.5B-Instruct model
+{
+  model: "http://localhost:5050/models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC",
+  model_id: "Qwen2.5-1.5B-Instruct (Localhost)",
+  model_lib: "http://localhost:5050/libs/Qwen2-1.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+  vram_required_MB: 795.98,
+  low_resource_required: true,
+  overrides: {
+    context_window_size: 2048,
   }
 },
 

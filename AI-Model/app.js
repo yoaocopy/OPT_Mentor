@@ -23,6 +23,7 @@ app.use('/models/DeepSeek-R1-Distill-Llama-8B-q4f16_1-MLC/resolve/main/', expres
 app.use('/models/Qwen2.5-Coder-0.5B-Instruct-q4f16_1-MLC/resolve/main/', express.static('./models/Qwen2.5-Coder-0.5B-Instruct-q4f16_1-MLC/'));
 app.use('/models/Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC/resolve/main/', express.static('./models/Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC/'));
 app.use('/models/Qwen2.5-Coder-7B-Instruct-q4f16_1-MLC/resolve/main/', express.static('./models/Qwen2.5-Coder-7B-Instruct-q4f16_1-MLC/'));
+app.use('/models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC/resolve/main/', express.static('./models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC/'));
 
 // Add TinyLlama model routes
 app.use('/models/TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC/resolve/main/', express.static('./models/TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC/'));
