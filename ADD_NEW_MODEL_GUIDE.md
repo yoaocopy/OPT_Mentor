@@ -95,11 +95,11 @@ Add your model to the `model_list` array:
   }
 },
 
-// For production deployment
+// For production deployment (Hugging Face)
 {
-  model: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/models/Your-New-Model-q4f16_1-MLC",
-  model_id: "Your-New-Model (Deep Server)",
-  model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Your-New-Model-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+  model: "https://huggingface.co/mlc-ai/Your-New-Model-q4f16_1-MLC",
+  model_id: "Your-New-Model (Hugging Face)",
+  model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Your-New-Model-q4f16_1-ctx4k_cs1k-webgpu.wasm",
   vram_required_MB: 1500.0,
   low_resource_required: true,
   overrides: {

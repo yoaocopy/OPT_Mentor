@@ -316,7 +316,7 @@ export const prebuiltAppConfig: AppConfig = {
     {
       model: "https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q4f16_1-MLC",
       model_id: "Llama-3.2-1B (Hugging Face)",
-      model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Llama-3.2-1B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Llama-3.2-1B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
       vram_required_MB: 879.04,
       low_resource_required: true,
       overrides: {
@@ -326,7 +326,7 @@ export const prebuiltAppConfig: AppConfig = {
     {
       model: "https://huggingface.co/mlc-ai/Llama-3.2-3B-Instruct-q4f16_1-MLC",
       model_id: "Llama-3.2-3B (Hugging Face)",
-      model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Llama-3.2-3B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Llama-3.2-3B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
       vram_required_MB: 1128.82,
       low_resource_required: true,
       overrides: {
@@ -336,7 +336,7 @@ export const prebuiltAppConfig: AppConfig = {
     {
       model: "https://huggingface.co/mlc-ai/DeepSeek-R1-Distill-Llama-8B-q4f16_1-MLC",
       model_id: "DeepSeek-R1-Distill-Llama-8B (Hugging Face)",
-      model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Llama-3_1-8B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Llama-3_1-8B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
       vram_required_MB: 5001.0,
       low_resource_required: false,
       overrides: {
@@ -346,7 +346,7 @@ export const prebuiltAppConfig: AppConfig = {
     {
       model: "https://huggingface.co/mlc-ai/Qwen2.5-Coder-0.5B-Instruct-q4f16_1-MLC",
       model_id: "Qwen2.5-Coder-0.5B (Hugging Face)",
-      model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Qwen2-0.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Qwen2-0.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
       vram_required_MB: 944.62,
       low_resource_required: true,
       overrides: {
@@ -357,7 +357,7 @@ export const prebuiltAppConfig: AppConfig = {
     {
       model: "https://huggingface.co/mlc-ai/Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC",
       model_id: "Qwen2.5-Coder-3B (Hugging Face)",
-      model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Qwen2.5-3B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Qwen2.5-3B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
       vram_required_MB: 2504.76,
       low_resource_required: true,
       overrides: {
@@ -368,7 +368,7 @@ export const prebuiltAppConfig: AppConfig = {
     {
       model: "https://huggingface.co/mlc-ai/Qwen2.5-Coder-7B-Instruct-q4f16_1-MLC",
       model_id: "Qwen2.5-Coder-7B (Hugging Face)",
-      model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Qwen2-7B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Qwen2-7B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
       vram_required_MB: 5106.67,
       low_resource_required: true,
       overrides: {
