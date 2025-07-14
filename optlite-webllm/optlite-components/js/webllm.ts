@@ -132,6 +132,8 @@ document.getElementById("askAI").addEventListener("click", function () {
     var question = "I'm writing Python, and here's my code: "+extractText()+" and I received this error: " + document.getElementById("frontendErrorOutput").textContent?.replace("(UNSUPPORTED FEATURES)", "") +
     "Hint in Socratic style";
 
+    
+
     document.getElementById("chat-stats").classList.add("hidden");
     onMessageSend(question);
 });
