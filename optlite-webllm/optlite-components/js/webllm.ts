@@ -130,7 +130,7 @@ document.getElementById("askAI").addEventListener("click", function () {
     // "Can you please provide a brief explanation of the cause of this error? I only need the reason., No code solution needed.";
 
     var question = "I'm writing Python, and here's my code: "+extractText()+" and I received this error: " + document.getElementById("frontendErrorOutput").textContent?.replace("(UNSUPPORTED FEATURES)", "") +
-    "Hint in Socratic style, at most 3 hints:";
+    "Hint in Socratic style, at most 3 hints:"; 
 
 
     document.getElementById("chat-stats").classList.add("hidden");
