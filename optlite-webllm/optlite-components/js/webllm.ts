@@ -126,8 +126,11 @@ function onMessageSend(input) {
 document.getElementById("askAI").addEventListener("click", function () {
     //const frontend = new OptFrontend();
 
+    // var question = "I'm writing Python, and here's my code: "+extractText()+" and I received this error: " + document.getElementById("frontendErrorOutput").textContent?.replace("(UNSUPPORTED FEATURES)", "") +
+    // "Can you please provide a brief explanation of the cause of this error? I only need the reason., No code solution needed.";
+
     var question = "I'm writing Python, and here's my code: "+extractText()+" and I received this error: " + document.getElementById("frontendErrorOutput").textContent?.replace("(UNSUPPORTED FEATURES)", "") +
-    "Can you please provide a brief explanation of the cause of this error? I only need the reason., No code solution needed.";
+    "Hint in Socratic style";
 
     document.getElementById("chat-stats").classList.add("hidden");
     onMessageSend(question);
