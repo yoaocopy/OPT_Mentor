@@ -314,8 +314,8 @@ export const prebuiltAppConfig: AppConfig = {
   useIndexedDBCache: false,
   model_list: [
     {
-      model: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/models/Llama-3.2-1B-Instruct-q4f16_1-MLC",
-      model_id: "Llama-3.2-1B (Deep Server)",
+      model: "https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q4f16_1-MLC",
+      model_id: "Llama-3.2-1B (Hugging Face)",
       model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Llama-3.2-1B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
       vram_required_MB: 879.04,
       low_resource_required: true,
@@ -324,8 +324,8 @@ export const prebuiltAppConfig: AppConfig = {
       }
     },
     {
-      model: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/models/Llama-3.2-3B-Instruct-q4f16_1-MLC",
-      model_id: "Llama-3.2-3B (Deep Server)",
+      model: "https://huggingface.co/mlc-ai/Llama-3.2-3B-Instruct-q4f16_1-MLC",
+      model_id: "Llama-3.2-3B (Hugging Face)",
       model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Llama-3.2-3B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
       vram_required_MB: 1128.82,
       low_resource_required: true,
@@ -334,8 +334,8 @@ export const prebuiltAppConfig: AppConfig = {
       }
     },
     {
-      model: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/models/DeepSeek-R1-Distill-Llama-8B-q4f16_1-MLC",
-      model_id: "DeepSeek-R1-Distill-Llama-8B (Deep Server)",
+      model: "https://huggingface.co/mlc-ai/DeepSeek-R1-Distill-Llama-8B-q4f16_1-MLC",
+      model_id: "DeepSeek-R1-Distill-Llama-8B (Hugging Face)",
       model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Llama-3_1-8B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
       vram_required_MB: 5001.0,
       low_resource_required: false,
@@ -344,8 +344,8 @@ export const prebuiltAppConfig: AppConfig = {
       }
     },
     {
-      model: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/models/Qwen2.5-Coder-0.5B-Instruct-q4f16_1-MLC",
-      model_id: "Qwen2.5-Coder-0.5B (Deep Server)",
+      model: "https://huggingface.co/mlc-ai/Qwen2.5-Coder-0.5B-Instruct-q4f16_1-MLC",
+      model_id: "Qwen2.5-Coder-0.5B (Hugging Face)",
       model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Qwen2-0.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
       vram_required_MB: 944.62,
       low_resource_required: true,
@@ -355,8 +355,8 @@ export const prebuiltAppConfig: AppConfig = {
     },
 
     {
-      model: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/models/Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC",
-      model_id: "Qwen2.5-Coder-3B (Deep Server)",
+      model: "https://huggingface.co/mlc-ai/Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC",
+      model_id: "Qwen2.5-Coder-3B (Hugging Face)",
       model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Qwen2.5-3B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
       vram_required_MB: 2504.76,
       low_resource_required: true,
@@ -366,8 +366,8 @@ export const prebuiltAppConfig: AppConfig = {
     },
 
     {
-      model: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/models/Qwen2.5-Coder-7B-Instruct-q4f16_1-MLC",
-      model_id: "Qwen2.5-Coder-7B (Deep Server)",
+      model: "https://huggingface.co/mlc-ai/Qwen2.5-Coder-7B-Instruct-q4f16_1-MLC",
+      model_id: "Qwen2.5-Coder-7B (Hugging Face)",
       model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Qwen2-7B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
       vram_required_MB: 5106.67,
       low_resource_required: true,
@@ -379,7 +379,7 @@ export const prebuiltAppConfig: AppConfig = {
     // Add TinyLlama models for deep server
     {
       model: "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC",
-      model_id: "TinyLlama-1.1B (Deep Server)",
+      model_id: "TinyLlama-1.1B (Hugging Face)",
       model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/TinyLlama-1.1B-Chat-v1.0-q4f16_1-ctx2k_cs1k-webgpu.wasm",
       vram_required_MB: 675.24,
       low_resource_required: true,
@@ -389,7 +389,7 @@ export const prebuiltAppConfig: AppConfig = {
     },
     {
       model: "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v1.0-q4f32_1-MLC",
-      model_id: "TinyLlama-1.1B (f32) (Deep Server)",
+      model_id: "TinyLlama-1.1B (f32) (Hugging Face)",
       model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/TinyLlama-1.1B-Chat-v1.0-q4f32_1-ctx2k_cs1k-webgpu.wasm",
       vram_required_MB: 795.98,
       low_resource_required: true,
