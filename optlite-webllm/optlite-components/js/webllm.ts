@@ -132,7 +132,12 @@ document.getElementById("askAI").addEventListener("click", function () {
     var question = "I'm writing Python, and here's my code: "+extractText()+" and I received this error: " + document.getElementById("frontendErrorOutput").textContent?.replace("(UNSUPPORTED FEATURES)", "") +
     "Hint in Socratic style";
 
-    
+    // Note: If you're seeing this message, please ensure you have a stable network connection to huggingface.co
+    // The AI model needs to download files from Hugging Face to function properly
+    // Common issues:
+    // 1. Slow or unstable internet connection
+    // 2. Hugging Face website being blocked by firewall
+    // 3. DNS resolution problems
 
     document.getElementById("chat-stats").classList.add("hidden");
     onMessageSend(question);
