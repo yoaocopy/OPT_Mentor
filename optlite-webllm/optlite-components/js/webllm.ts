@@ -25,12 +25,8 @@ function processMessageFormat(message) {
         const char = message[i];
         
         if (char === "?") {
-            // 遇到"?"就换行
-            processedMessage += "?\n";
-            i++;
-        } else if (char === "-") {
-            // 遇到"-"就换行
-            processedMessage += "-\n";
+            // 遇到"?"就换行 - 在HTML中使用<br>标签
+            processedMessage += "?<br>";
             i++;
         } else if (char === "<") {
             // 检查是否是"<|im_end|>"
@@ -161,7 +157,7 @@ function onMessageSend(input) {
             usage: usage
         });
         
-        document.getElementById("message-out").textContent = "AI Response:\n" + processedMessage;
+        document.getElementById("message-out").innerHTML = "AI Response:<br>" + processedMessage;
         const usageText =
         `prompt_tokens: ${usage.prompt_tokens}, ` +
         `completion_tokens: ${usage.completion_tokens}, ` +
@@ -177,7 +173,7 @@ function onMessageSend(input) {
         (msg) => {
             // 应用特殊格式处理
             const { processedMessage, shouldStopGeneration } = processMessageFormat(msg);
-            document.getElementById("message-out").textContent = "AI Response:\n" + processedMessage;
+            document.getElementById("message-out").innerHTML = "AI Response:<br>" + processedMessage;
             
             // 如果检测到结束标记，停止后端生成
             if (shouldStopGeneration) {
@@ -329,7 +325,7 @@ function showLastModified() {
     // 推荐用构建时注入的字符串，下面用 Date.now() 作为例子
     // const lastModified = "Last modified: " + new Date(/*BUILD_TIMESTAMP*/ Date.now()).toLocaleString();
     //手动修改信息，用于验证页面是否已更新
-    const lastModified = "Last modified: " + "2507151152";
+    const lastModified = "Last modified: " + "2507151240";
     let modDiv = document.getElementById("last-modified-block");
     if (!modDiv) {
         modDiv = document.createElement("div");

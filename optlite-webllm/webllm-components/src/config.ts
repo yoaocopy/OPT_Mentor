@@ -314,6 +314,16 @@ export const prebuiltAppConfig: AppConfig = {
   useIndexedDBCache: false,
   model_list: [
     {
+      model: "https://huggingface.co/yoaocopy/sft_model_1.5B-q4f16_1-MLC",
+      model_id: "sft_model_1.5B-q4f16_1-MLC (Hugging Face)",
+      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Qwen2-1.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+      vram_required_MB: 795.98,
+      low_resource_required: true,
+      overrides: {
+        context_window_size: 2048,
+      }
+    },
+    {
       model: "https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q4f16_1-MLC",
       model_id: "Llama-3.2-1B (Hugging Face)",
       model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Llama-3.2-1B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
@@ -385,16 +395,7 @@ export const prebuiltAppConfig: AppConfig = {
         context_window_size: 2048,
       }
     },
-    {
-      model: "https://huggingface.co/yoaocopy/sft_model_1.5B-q4f16_1-MLC",
-      model_id: "sft_model_1.5B-q4f16_1-MLC (Hugging Face)",
-      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Qwen2-1.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-      vram_required_MB: 795.98,
-      low_resource_required: true,
-      overrides: {
-        context_window_size: 2048,
-      }
-    },
+
 
     // Add TinyLlama models for deep server
     {
