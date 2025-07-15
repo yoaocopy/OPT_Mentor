@@ -11,6 +11,43 @@ const messages = [
     },
 ];
 
+// 全局变量存储AI回复
+let lastAIResponse = "";
+let responseHistory = [];
+
+// 特殊格式处理函数
+function processMessageFormat(message) {
+    let processedMessage = "";
+    let i = 0;
+    
+    while (i < message.length) {
+        const char = message[i];
+        
+        if (char === "?") {
+            // 遇到"?"就换行
+            processedMessage += "?\n";
+            i++;
+        } else if (char === "<") {
+            // 检查是否是"<|im_end|>"
+            const remainingText = message.substring(i);
+            if (remainingText.startsWith("<|im_end|>")) {
+                // 找到结束标记，停止处理
+                break;
+            } else {
+                // 不是结束标记，继续显示
+                processedMessage += char;
+                i++;
+            }
+        } else {
+            // 普通字符，直接添加
+            processedMessage += char;
+            i++;
+        }
+    }
+    
+    return processedMessage;
+}
+
 const availableModels = webllm.prebuiltAppConfig.model_list.map(
     (m) => m.model_id,
 );
@@ -93,8 +130,32 @@ function onMessageSend(input) {
 
     messages.push(message);
 
+
+    // const onFinishGenerating = (finalMessage, usage) => {
+    //     document.getElementById("message-out").textContent = "AI Response:\n" + finalMessage;
+    //     const usageText =
+    //     `prompt_tokens: ${usage.prompt_tokens}, ` +
+    //     `completion_tokens: ${usage.completion_tokens}, ` +
+    //     `prefill: ${usage.extra.prefill_tokens_per_s.toFixed(4)} tokens/sec, ` +
+    //     `decoding: ${usage.extra.decode_tokens_per_s.toFixed(4)} tokens/sec`;
+    //     document.getElementById("chat-stats").classList.remove("hidden");
+    //     document.getElementById("chat-stats").textContent = usageText;
+    //     //document.getElementById("send").disabled = false;
+    // };
+
     const onFinishGenerating = (finalMessage, usage) => {
-        document.getElementById("message-out").textContent = "AI Response:\n" + finalMessage;
+        // 应用特殊格式处理
+        const processedMessage = processMessageFormat(finalMessage);
+        
+        // 保存处理后的回复到全局变量
+        lastAIResponse = processedMessage;
+        responseHistory.push({
+            timestamp: new Date(),
+            message: processedMessage,
+            usage: usage
+        });
+        
+        document.getElementById("message-out").textContent = "AI Response:\n" + processedMessage;
         const usageText =
         `prompt_tokens: ${usage.prompt_tokens}, ` +
         `completion_tokens: ${usage.completion_tokens}, ` +
@@ -108,7 +169,9 @@ function onMessageSend(input) {
     streamingGenerating(
         messages,
         (msg) => {
-            document.getElementById("message-out").textContent = "AI Response:\n" + msg;
+            // 应用特殊格式处理
+            const processedMessage = processMessageFormat(msg);
+            document.getElementById("message-out").textContent = "AI Response:\n" + processedMessage;
         },
         onFinishGenerating,
         (err) => {
@@ -253,7 +316,9 @@ document.getElementById("add-custom-model").addEventListener("click", function (
 function showLastModified() {
     // 你可以用构建时注入的时间戳，或者用 Date.now() 作为演示
     // 推荐用构建时注入的字符串，下面用 Date.now() 作为例子
-    const lastModified = "Last modified: " + new Date(/*BUILD_TIMESTAMP*/ Date.now()).toLocaleString();
+    // const lastModified = "Last modified: " + new Date(/*BUILD_TIMESTAMP*/ Date.now()).toLocaleString();
+    //手动修改信息，用于验证页面是否已更新
+    const lastModified = "Last modified: " + "2507151152";
     let modDiv = document.getElementById("last-modified-block");
     if (!modDiv) {
         modDiv = document.createElement("div");
