@@ -19,6 +19,7 @@ let responseHistory = [];
 function processMessageFormat(message) {
     let processedMessage = "";
     let i = 0;
+    let shouldStopGeneration = false;
     
     while (i < message.length) {
         const char = message[i];
@@ -27,11 +28,16 @@ function processMessageFormat(message) {
             // 遇到"?"就换行
             processedMessage += "?\n";
             i++;
+        } else if (char === "-") {
+            // 遇到"-"就换行
+            processedMessage += "-\n";
+            i++;
         } else if (char === "<") {
             // 检查是否是"<|im_end|>"
             const remainingText = message.substring(i);
             if (remainingText.startsWith("<|im_end|>")) {
-                // 找到结束标记，停止处理
+                // 找到结束标记，停止处理并标记需要停止生成
+                shouldStopGeneration = true;
                 break;
             } else {
                 // 不是结束标记，继续显示
@@ -45,7 +51,7 @@ function processMessageFormat(message) {
         }
     }
     
-    return processedMessage;
+    return { processedMessage, shouldStopGeneration };
 }
 
 const availableModels = webllm.prebuiltAppConfig.model_list.map(
@@ -145,7 +151,7 @@ function onMessageSend(input) {
 
     const onFinishGenerating = (finalMessage, usage) => {
         // 应用特殊格式处理
-        const processedMessage = processMessageFormat(finalMessage);
+        const { processedMessage, shouldStopGeneration } = processMessageFormat(finalMessage);
         
         // 保存处理后的回复到全局变量
         lastAIResponse = processedMessage;
@@ -170,8 +176,13 @@ function onMessageSend(input) {
         messages,
         (msg) => {
             // 应用特殊格式处理
-            const processedMessage = processMessageFormat(msg);
+            const { processedMessage, shouldStopGeneration } = processMessageFormat(msg);
             document.getElementById("message-out").textContent = "AI Response:\n" + processedMessage;
+            
+            // 如果检测到结束标记，停止后端生成
+            if (shouldStopGeneration) {
+                engine.interruptGenerate();
+            }
         },
         onFinishGenerating,
         (err) => {
