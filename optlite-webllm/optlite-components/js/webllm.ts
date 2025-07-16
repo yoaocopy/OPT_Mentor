@@ -325,7 +325,7 @@ function showLastModified() {
     // 推荐用构建时注入的字符串，下面用 Date.now() 作为例子
     // const lastModified = "Last modified: " + new Date(/*BUILD_TIMESTAMP*/ Date.now()).toLocaleString();
     //手动修改信息，用于验证页面是否已更新
-    const lastModified = "Last modified: " + "2507151240";
+    const lastModified = "Last modified: " + "2507161300";
     let modDiv = document.getElementById("last-modified-block");
     if (!modDiv) {
         modDiv = document.createElement("div");
