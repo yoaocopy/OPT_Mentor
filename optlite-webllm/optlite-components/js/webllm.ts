@@ -53,7 +53,7 @@ function processMessageFormat(message) {
 const availableModels = webllm.prebuiltAppConfig.model_list.map(
     (m) => m.model_id,
 );
-let selectedModel = "Llama-3.2-1B-Instruct-q4f16_1-MLC";
+let selectedModel = "sft_model_1.5B-q4f16_1-MLC (Hugging Face)";
 
 // Callback function for initializing progress
 function updateEngineInitProgressCallback(report) {
