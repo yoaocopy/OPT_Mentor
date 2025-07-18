@@ -15,6 +15,28 @@ const messages = [
 let lastAIResponse = "";
 let responseHistory = [];
 
+// 清除内存函数
+function clearMemory() {
+    // 重置消息数组到初始状态
+    messages.length = 0;
+    messages.push({
+        content: "You are a helpful AI agent helping users.",
+        role: "system",
+    });
+    
+    // 清除AI回复历史
+    lastAIResponse = "";
+    responseHistory = [];
+    
+    // 清除UI显示
+    document.getElementById("message-out").classList.add("hidden");
+    document.getElementById("message-out").textContent = "";
+    document.getElementById("chat-stats").classList.add("hidden");
+    document.getElementById("chat-stats").textContent = "";
+    
+    console.log("Memory cleared - new session started");
+}
+
 // 特殊格式处理函数
 function processMessageFormat(message) {
     let processedMessage = "";
@@ -291,7 +313,7 @@ document.getElementById("add-custom-model").addEventListener("click", function (
     errorDiv.textContent = "";
 
     if (!baseUrl || !wasmUrl) {
-        errorDiv.textContent = "请填写模型Base URL和WASM文件URL";
+        errorDiv.textContent = "Please enter Base URL and WASM URL;
         return;
     }
 
@@ -308,7 +330,7 @@ document.getElementById("add-custom-model").addEventListener("click", function (
     // 动态添加到下拉框
     const option = document.createElement("option");
     option.value = customId;
-    option.textContent = customId + " (自定义)";
+    option.textContent = customId + "(Customized)";
     document.getElementById("model-selection").appendChild(option);
 
     // 记录到全局
@@ -337,4 +359,12 @@ function showLastModified() {
 }
 
 document.addEventListener('DOMContentLoaded', showLastModified);
+
+// 添加Clear Memory按钮事件监听器
+document.addEventListener('DOMContentLoaded', function() {
+    const clearMemoryBtn = document.getElementById('clearMemory');
+    if (clearMemoryBtn) {
+        clearMemoryBtn.addEventListener('click', clearMemory);
+    }
+});
 
