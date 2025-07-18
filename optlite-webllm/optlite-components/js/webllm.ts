@@ -75,7 +75,7 @@ function processMessageFormat(message) {
 const availableModels = webllm.prebuiltAppConfig.model_list.map(
     (m) => m.model_id,
 );
-let selectedModel = "sft_model_1.5B-q4f16_1-MLC (Hugging Face)";
+let selectedModel = "socraticAI_1.5B-q4f16_1-MLC (Hugging Face)";
 
 // Callback function for initializing progress
 function updateEngineInitProgressCallback(report) {
@@ -313,7 +313,7 @@ document.getElementById("add-custom-model").addEventListener("click", function (
     errorDiv.textContent = "";
 
     if (!baseUrl || !wasmUrl) {
-        errorDiv.textContent = "Please enter Base URL and WASM URL;
+        errorDiv.textContent = "Please enter Base URL and WASM URL";
         return;
     }
 
