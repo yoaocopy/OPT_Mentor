@@ -240,6 +240,7 @@ availableModels.forEach((modelId) => {
 document.getElementById("download").addEventListener("click", function () {
     initializeWebLLMEngine().then(() => {
         (document.getElementById("askAI") as HTMLButtonElement).disabled = false;
+        (document.getElementById("clearMemory") as HTMLButtonElement).disabled = false;
     });
 });
 
@@ -276,7 +277,8 @@ function initializeErrorObserver() {
         mutations.forEach(() => {
             const hasError = frontendErrorOutput.textContent?.trim() !== '';
             askAIButton.style.display = hasError ? 'block' : 'none';
-            clearMemoryButton.style.display = hasError ? 'block' : 'none';
+            // Clear Memory按钮跟随Ask AI的显示状态
+            clearMemoryButton.style.display = askAIButton.style.display;
             
             if (!hasError) {
                 // Clear and hide message-out and chat-stats when error is cleared
@@ -299,9 +301,9 @@ function initializeErrorObserver() {
     });
 
     // Initial check
-    const initialHasError = frontendErrorOutput.textContent?.trim() !== '';
-    askAIButton.style.display = initialHasError ? 'block' : 'none';
-    clearMemoryButton.style.display = initialHasError ? 'block' : 'none';
+    askAIButton.style.display = 
+        frontendErrorOutput.textContent?.trim() !== '' ? 'block' : 'none';
+    clearMemoryButton.style.display = askAIButton.style.display;
 }
 
 document.addEventListener('DOMContentLoaded', initializeErrorObserver);
@@ -365,9 +367,11 @@ document.addEventListener('DOMContentLoaded', showLastModified);
 
 // 添加Clear Memory按钮事件监听器
 document.addEventListener('DOMContentLoaded', function() {
-    const clearMemoryBtn = document.getElementById('clearMemory');
+    const clearMemoryBtn = document.getElementById('clearMemory') as HTMLButtonElement;
     if (clearMemoryBtn) {
         clearMemoryBtn.addEventListener('click', clearMemory);
+        // 初始状态设置为禁用
+        clearMemoryBtn.disabled = true;
     }
 });
 
