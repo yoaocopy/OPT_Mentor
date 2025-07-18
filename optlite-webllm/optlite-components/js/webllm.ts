@@ -263,10 +263,11 @@ function extractText() {
 function initializeErrorObserver() {
     const frontendErrorOutput = document.getElementById('frontendErrorOutput');
     const askAIButton = document.getElementById('askAI');
+    const clearMemoryButton = document.getElementById('clearMemory');
     const chatStats = document.getElementById('chat-stats');
     const messageOut = document.getElementById('message-out');
 
-    if (!frontendErrorOutput || !askAIButton) {
+    if (!frontendErrorOutput || !askAIButton || !clearMemoryButton) {
         console.error('Required elements not found');
         return;
     }
@@ -275,6 +276,7 @@ function initializeErrorObserver() {
         mutations.forEach(() => {
             const hasError = frontendErrorOutput.textContent?.trim() !== '';
             askAIButton.style.display = hasError ? 'block' : 'none';
+            clearMemoryButton.style.display = hasError ? 'block' : 'none';
             
             if (!hasError) {
                 // Clear and hide message-out and chat-stats when error is cleared
@@ -297,8 +299,9 @@ function initializeErrorObserver() {
     });
 
     // Initial check
-    askAIButton.style.display = 
-        frontendErrorOutput.textContent?.trim() !== '' ? 'block' : 'none';
+    const initialHasError = frontendErrorOutput.textContent?.trim() !== '';
+    askAIButton.style.display = initialHasError ? 'block' : 'none';
+    clearMemoryButton.style.display = initialHasError ? 'block' : 'none';
 }
 
 document.addEventListener('DOMContentLoaded', initializeErrorObserver);
@@ -347,7 +350,7 @@ function showLastModified() {
     // 推荐用构建时注入的字符串，下面用 Date.now() 作为例子
     // const lastModified = "Last modified: " + new Date(/*BUILD_TIMESTAMP*/ Date.now()).toLocaleString();
     //手动修改信息，用于验证页面是否已更新
-    const lastModified = "Last modified: " + "2507161300";
+    const lastModified = "Last modified: " + "2507181130";
     let modDiv = document.getElementById("last-modified-block");
     if (!modDiv) {
         modDiv = document.createElement("div");
