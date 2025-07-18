@@ -239,8 +239,12 @@ availableModels.forEach((modelId) => {
 (document.getElementById("model-selection") as HTMLSelectElement).value = selectedModel;
 document.getElementById("download").addEventListener("click", function () {
     initializeWebLLMEngine().then(() => {
-        (document.getElementById("askAI") as HTMLButtonElement).disabled = false;
-        (document.getElementById("clearMemory") as HTMLButtonElement).disabled = false;
+        const askAIButton = document.getElementById("askAI") as HTMLButtonElement;
+        const clearMemoryButton = document.getElementById("clearMemory") as HTMLButtonElement;
+        
+        askAIButton.disabled = false;
+        askAIButton.title = ""; // 清除提示，因为按钮现在可用了
+        clearMemoryButton.disabled = false;
     });
 });
 
@@ -368,10 +372,15 @@ document.addEventListener('DOMContentLoaded', showLastModified);
 // 添加Clear Memory按钮事件监听器
 document.addEventListener('DOMContentLoaded', function() {
     const clearMemoryBtn = document.getElementById('clearMemory') as HTMLButtonElement;
+    const askAIButton = document.getElementById('askAI') as HTMLButtonElement;
+    
     if (clearMemoryBtn) {
         clearMemoryBtn.addEventListener('click', clearMemory);
-        // 初始状态设置为禁用
-        clearMemoryBtn.disabled = true;
+    }
+    
+    // 确保Ask AI按钮在禁用状态时有正确的提示
+    if (askAIButton && askAIButton.disabled) {
+        askAIButton.title = "Select and pull model first";
     }
 });
 
