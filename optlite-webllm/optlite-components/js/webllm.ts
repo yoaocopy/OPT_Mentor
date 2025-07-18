@@ -75,7 +75,7 @@ function processMessageFormat(message) {
 const availableModels = webllm.prebuiltAppConfig.model_list.map(
     (m) => m.model_id,
 );
-let selectedModel = "socraticAI_1.5B-q4f16_1-MLC (Hugging Face)";
+let selectedModel = "SocraticAI_1.5B-q4f16_1-MLC (Hugging Face)";
 
 // Callback function for initializing progress
 function updateEngineInitProgressCallback(report) {
