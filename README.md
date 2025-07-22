@@ -2,8 +2,8 @@
 
 OPM is a serverless implementation of Online Python Tutor Lite (OPTLite) designed for offline use and enhanced educational environments. This project builds upon the [optlite](https://github.com/dive4dec/optlite) concept while making it more accessible and secure for educational settings. Integrated with [WEBLLM](https://github.com/mlc-ai/web-llm) for advanced language model capabilities.
 
-> **📌 Try latest OPTMentor online:** [OPTMentor](https://yoaocopy.github.io/OPT_Mentor/live.html)
-> > The model `SocraticAI_1.5B-q4f16_1-MLC` is our fine-tuned model for providing hints, not answers.
+> **📌 Try latest OPTMentor online:** https://yoaocopy.github.io/OPT_Mentor/live.html
+> > The model `SocraticAI_1.5B-q4f16_1-MLC` is our fine-tuned model for providing hints, not answers. Refer to https://github.com/virg1n/Hints_Not_Answers for details.
 
 
 
