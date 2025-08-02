@@ -70,28 +70,44 @@ jobs:
         chmod +x node_modules/.bin/webpack
         npm run build:prod
         
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
+    # - name: Setup Pages
+    #   uses: actions/configure-pages@v4
       
-    - name: Copy WebLLM components to build directory
-      run: |
-        mkdir -p optlite-webllm/optlite-components/build/webllm
-        cp -r optlite-webllm/webllm-components/lib/* optlite-webllm/optlite-components/build/webllm/
+    # - name: Copy WebLLM components to build directory
+    #   run: |
+    #     mkdir -p optlite-webllm/optlite-components/build/webllm
+    #     cp -r optlite-webllm/webllm-components/lib/* optlite-webllm/optlite-components/build/webllm/
         
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: optlite-webllm/optlite-components/build
+    # - name: Upload artifact
+    #   uses: actions/upload-pages-artifact@v3
+    #   with:
+    #     path: optlite-webllm/optlite-components/build
+
+  # deploy:
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    
+  #   steps:
+  #   - name: Deploy to GitHub Pages
+  #     id: deployment
+  #     uses: actions/deploy-pages@v4 
 
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    
+
     steps:
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: optlite-webllm/optlite-components/build
+          publish_branch: gh-pages
