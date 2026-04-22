@@ -19,18 +19,39 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # # Toggle whether to inject API config at build time
+      # INJECT_API_CONFIG: ${{ inputs.inject_api_config || 'false' }}
+      # # Where to inject
+      # API_INJECT_TARGET: ${{ inputs.api_inject_target || 'window' }}
+      # # Values used when INJECT_API_CONFIG is true (can also come from secrets)
+      # API_BASE_URL: ${{ inputs.api_base_url || secrets.API_BASE_URL }}
+      # API_KEY: ${{ inputs.api_key || secrets.API_KEY }}
+      # API_MODEL: ${{ inputs.api_model || secrets.API_MODEL }}
+      # # Hide API config panel on UI (still keeps mode toggle)
+      # API_HIDE_API_PANEL: ${{ inputs.api_hide_api_panel || 'false' }}
+
+      SINGLE_MODE: 'local' # 'local' or 'api' or ''; empty means allow the switching of the two modes；The method for passing this value is also determined by API_INJECT_TARGET.
+      INJECT_API_CONFIG: 'true'         # whether to inject API information here
+      API_INJECT_TARGET: 'define'   # or 'window'; 'define' means information injected to js, 'window' means injected to html source file with windowVars
+      API_BASE_URL: 'https://dive.cs.cityu.edu.hk/ai-test/v1'
+      API_KEY: 'apikey123456'           # be care
+      API_MODEL: 'test'
+      # leave API_HIDE_API_PANEL blank, and then INJECT_API_CONFIG will decide whether hide the api panel; otherwise the API information from localStorage (if not empty) will shadow the injection with windowVar
+      API_HIDE_API_PANEL: ''        # whether to hide the api panel
+
     
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
-      
+      uses: actions/checkout@v6
+
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: '22'
-        
+
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v6
       with:
         python-version: '3.10'
         
@@ -50,13 +71,14 @@ jobs:
         cd optlite-webllm/webllm-components
         export HUSKY=0
         export HUSKY_SKIP_HOOKS=1
-        npm install --ignore-scripts
-        npm install --save-dev rollup@2.56.2
+        # npm ci + committed lockfile avoids “same package.json, different transitive deps over time”
+        npm ci --ignore-scripts
         chmod +x cleanup-index-js.sh
         chmod +x node_modules/.bin/rollup
         export PATH="$PATH:$(npm bin)"
-        npm run build || true
-        
+        npm run build
+        test -f lib/index.js
+
     - name: Build Python wheel
       run: |
         cd optlite-webllm/optlite-components
@@ -88,7 +110,7 @@ jobs:
         fi
         
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: build-files
         path: optlite-webllm/optlite-components/build/
@@ -101,7 +123,7 @@ jobs:
 
     steps:
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: build-files
           path: optlite-webllm/optlite-components/build

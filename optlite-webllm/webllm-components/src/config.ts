@@ -298,10 +298,6 @@ export const functionCallingModelIds = [
   "Hermes-2-Pro-Mistral-7B-q4f16_1-MLC",
   "Hermes-3-Llama-3.1-8B-q4f32_1-MLC",
   "Hermes-3-Llama-3.1-8B-q4f16_1-MLC",
-  "TinyLlama-1.1B (Deep Server)",
-  "TinyLlama-1.1B (f32) (Deep Server)",
-  "TinyLlama-1.1B (Localhost)",
-  "TinyLlama-1.1B (f32) (Localhost)",
 ];
 
 /**
@@ -314,244 +310,38 @@ export const prebuiltAppConfig: AppConfig = {
   useIndexedDBCache: false,
   model_list: [
     {
-      model: "https://huggingface.co/yoaocopy/SocraticAI_1.5B-q4f16_1-MLC",
-      model_id: "SocraticAI_1.5B-q4f16_1-MLC (Hugging Face)",
-      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Qwen2-1.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-      vram_required_MB: 795.98,
-      low_resource_required: true,
-      overrides: {
-        context_window_size: 2048,
-      }
-    },
-    {
       model: "https://huggingface.co/yoaocopy/sft_model_1.5B-q4f16_1-MLC",
       model_id: "sft_model_1.5B-q4f16_1-MLC (Hugging Face)",
       model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Qwen2-1.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-      vram_required_MB: 795.98,
-      low_resource_required: true,
-      overrides: {
-        context_window_size: 2048,
-      }
-    },
-    {
-      model: "https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q4f16_1-MLC",
-      model_id: "Llama-3.2-1B (Hugging Face)",
-      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Llama-3.2-1B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-      vram_required_MB: 879.04,
-      low_resource_required: true,
-      overrides: {
-        context_window_size: 4096,
-      }
-    },
-    {
-      model: "https://huggingface.co/mlc-ai/Llama-3.2-3B-Instruct-q4f16_1-MLC",
-      model_id: "Llama-3.2-3B (Hugging Face)",
-      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Llama-3.2-3B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-      vram_required_MB: 1128.82,
-      low_resource_required: true,
-      overrides: {
-        context_window_size: 4096,
-      }
-    },
-    {
-      model: "https://huggingface.co/mlc-ai/DeepSeek-R1-Distill-Llama-8B-q4f16_1-MLC",
-      model_id: "DeepSeek-R1-Distill-Llama-8B (Hugging Face)",
-      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Llama-3_1-8B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-      vram_required_MB: 5001.0,
-      low_resource_required: false,
-      overrides: {
-        context_window_size: 4096,
-      }
-    },
-    {
-      model: "https://huggingface.co/mlc-ai/Qwen2.5-Coder-0.5B-Instruct-q4f16_1-MLC",
-      model_id: "Qwen2.5-Coder-0.5B (Hugging Face)",
-      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Qwen2-0.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-      vram_required_MB: 944.62,
+      vram_required_MB: 1629.75,
       low_resource_required: true,
       overrides: {
         context_window_size: 4096,
       }
     },
 
-    {
-      model: "https://huggingface.co/mlc-ai/Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC",
-      model_id: "Qwen2.5-Coder-3B (Hugging Face)",
-      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Qwen2.5-3B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-      vram_required_MB: 2504.76,
-      low_resource_required: true,
-      overrides: {
-        context_window_size: 4096,
-      }
-    },
-
-    {
-      model: "https://huggingface.co/mlc-ai/Qwen2.5-Coder-7B-Instruct-q4f16_1-MLC",
-      model_id: "Qwen2.5-Coder-7B (Hugging Face)",
-      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Qwen2-7B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-      vram_required_MB: 5106.67,
-      low_resource_required: true,
-      overrides: {
-        context_window_size: 4096,
-      }
-    },
-    {
-      model: "https://huggingface.co/mlc-ai/Qwen2.5-1.5B-Instruct-q4f16_1-MLC",
-      model_id: "Qwen2.5-1.5B-Instruct-q4f16_1-MLC (Hugging Face)",
-      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Qwen2-1.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-      vram_required_MB: 795.98,
-      low_resource_required: true,
-      overrides: {
-        context_window_size: 2048,
-      }
-    },
-
-
-    // Add TinyLlama models for deep server
-    {
-      model: "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC",
-      model_id: "TinyLlama-1.1B (Hugging Face)",
-      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/TinyLlama-1.1B-Chat-v1.0-q4f16_1-ctx2k_cs1k-webgpu.wasm",
-      vram_required_MB: 675.24,
-      low_resource_required: true,
-      overrides: {
-        context_window_size: 2048,
-      }
-    },
-
-    {
-      model: "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v1.0-q4f32_1-MLC",
-      model_id: "TinyLlama-1.1B (f32) (Hugging Face)",
-      model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/TinyLlama-1.1B-Chat-v1.0-q4f32_1-ctx2k_cs1k-webgpu.wasm",
-      vram_required_MB: 795.98,
-      low_resource_required: true,
-      overrides: {
-        context_window_size: 2048,
-      }
-    },
-
-    //localhost models
+    // // Deep Server models
     // {
-    //   model: "http://localhost:5050/models/Llama-3.2-1B-Instruct-q4f16_1-MLC",
-    //   model_id: "Llama-3.2-1B (Localhost)",
-    //   model_lib: "http://localhost:5050/libs/Llama-3.2-1B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-    //   vram_required_MB: 879.04,
+    //   model: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/models/sft_model_1.5B-q4f16_1-MLC",
+    //   model_id: "sft_model_1.5B-q4f16_1-MLC (Deep Server)",
+    //   model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Qwen2-1.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+    //   vram_required_MB: 1629.75,
     //   low_resource_required: true,
     //   overrides: {
     //     context_window_size: 4096,
     //   }
     // },
+    // //localhost models
     // {
-    //   model: "http://localhost:5050/models/Llama-3.2-3B-Instruct-q4f16_1-MLC",
-    //   model_id: "Llama-3.2-3B (Localhost)",
-    //   model_lib: "http://localhost:5050/libs/Llama-3.2-3B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-    //   vram_required_MB: 1128.82,
-    //   low_resource_required: true,
-    //   overrides: {
-    //     context_window_size: 4096,
-    //   }
-    // },
-    // {
-    //   model: "http://localhost:5050/models/DeepSeek-R1-Distill-Llama-8B-q4f16_1-MLC",
-    //   model_id: "DeepSeek-R1-Distill-Llama-8B (Localhost)",
-    //   model_lib: "http://localhost:5050/libs/Llama-3_1-8B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-    //   vram_required_MB: 5001.0,
-    //   low_resource_required: false,
-    //   overrides: {
-    //     context_window_size: 4096,
-    //   }
-    // },
-    // {
-    //   model: "http://localhost:5050/models/Qwen2.5-Coder-0.5B-Instruct-q4f16_1-MLC",
-    //   model_id: "Qwen2.5-Coder-0.5B (Localhost)",
-    //   model_lib: "http://localhost:5050/libs/Qwen2-0.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-    //   vram_required_MB: 944.62,
-    //   low_resource_required: true,
-    //   overrides: {
-    //     context_window_size: 4096,
-    //   }
-    // },
-
-    // {
-    //   model: "http://localhost:5050/models/Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC",
-    //   model_id: "Qwen2.5-Coder-3B (Localhost)",
-    //   model_lib: "http://localhost:5050/libs/Qwen2.5-3B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-    //   vram_required_MB: 2504.76,
-    //   low_resource_required: true,
-    //   overrides: {
-    //     context_window_size: 4096,
-    //   }
-    // },
-
-    // {
-    //   model: "http://localhost:5050/models/Qwen2.5-Coder-7B-Instruct-q4f16_1-MLC",
-    //   model_id: "Qwen2.5-Coder-7B (Localhost)",
-    //   model_lib: "http://localhost:5050/libs/Qwen2-7B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-    //   vram_required_MB: 5106.67,
-    //   low_resource_required: true,
-    //   overrides: {
-    //     context_window_size: 4096,
-    //   }
-    // },
-
-    // {
-    //   model: "http://localhost:5050/models/Qwen2.5-1.5B-Instruct-q4f16_1-MLC",
-    //   model_id: "Qwen2.5-1.5B-Instruct (Localhost)",
+    //   model: "http://localhost:5050/models/sft_model_1.5B-q4f16_1-MLC",
+    //   model_id: "sft_model_1.5B-q4f16_1-MLC (Localhost)",
     //   model_lib: "http://localhost:5050/libs/Qwen2-1.5B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-    //   vram_required_MB: 795.98,
+    //   vram_required_MB: 1629.75,
     //   low_resource_required: true,
-    //   overrides: {
-    //     context_window_size: 2048,
-    //   }
-    // },
-
-    // // Add TinyLlama models
-    // {
-    //   model: "http://localhost:5050/models/TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC",
-    //   model_id: "TinyLlama-1.1B (Localhost)",
-    //   model_lib: "http://localhost:5050/libs/TinyLlama-1.1B-Chat-v1.0-q4f16_1-ctx2k_cs1k-webgpu.wasm",
-    //   vram_required_MB: 675.24,
-    //   low_resource_required: true,
-    //   overrides: {
-    //     context_window_size: 2048,
-    //   }
-    // },
-    // {
-    //   model: "http://localhost:5050/models/TinyLlama-1.1B-Chat-v1.0-q4f32_1-MLC",
-    //   model_id: "TinyLlama-1.1B (f32) (Localhost)",
-    //   model_lib: "http://localhost:5050/libs/TinyLlama-1.1B-Chat-v1.0-q4f32_1-ctx2k_cs1k-webgpu.wasm",
-    //   vram_required_MB: 795.98,
-    //   low_resource_required: true,
-    //   overrides: {
-    //     context_window_size: 2048,
-    //   }
-    // },
-
-    // Example: Add your new model here
-    // {
-    //   model: "http://localhost:5050/models/Your-New-Model-q4f16_1-MLC",
-    //   model_id: "Your-New-Model (Localhost)",
-    //   model_lib: "http://localhost:5050/libs/Your-New-Model-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-    //   vram_required_MB: 1500.0, // Calculate this based on your model size
-    //   low_resource_required: true, // Set based on your model requirements
     //   overrides: {
     //     context_window_size: 4096,
     //   }
     // },
-    // {
-    //   model: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/models/Your-New-Model-q4f16_1-MLC",
-    //   model_id: "Your-New-Model (Deep Server)",
-    //   model_lib: "https://deep.cs.cityu.edu.hk/optmentor/ai-model/libs/Your-New-Model-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-    //   vram_required_MB: 1500.0, // Calculate this based on your model size
-    //   low_resource_required: true, // Set based on your model requirements
-    //   overrides: {
-    //     context_window_size: 4096,
-    //   }
-    // },
-
-    
-  
-  
 ]
 };
 
